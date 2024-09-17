@@ -79,81 +79,78 @@ class _ProfileTabState extends State<ProfileTab> {
           ),
           Expanded(
             child: ListView(children: [
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                buildSectionTitle(
-                  "Settings",
+              buildSectionTitle(
+                "Settings",
+              ),
+              buildListTile(
+                "AppSettings",
+                "assets/Icons/setting-2.svg",
+                SettingsTab(),
+                context,
+              ),
+              buildSectionTitle(
+                "Account",
+              ),
+              buildListTile(
+                "Change account name",
+                "assets/Icons/user.svg",
+                AccountName(),
+                context,
+              ),
+              buildListTile(
+                "Change account password",
+                "assets/Icons/key.svg",
+                ChangePassword(),
+                context,
+              ),
+              buildListTile("Change account Image", "assets/Icons/camera.svg",
+                  ChangeImage(), context),
+              buildSectionTitle(
+                "Uptodo",
+              ),
+              buildListTile(
+                "About US",
+                "assets/Icons/menu.svg",
+                AccountName(),
+                context,
+              ),
+              buildListTile(
+                "FAQ",
+                "assets/Icons/info-circle.svg",
+                ChangePassword(),
+                context,
+              ),
+              buildListTile("Help & Feedback", "assets/Icons/flash.svg",
+                  ChangeImage(), context),
+              buildListTile("Support US",
+                  "assets/Icons/like.svg",
+                  ChangeImage(), context),
+              ListTile(
+                minLeadingWidth: 0,
+                autofocus: true,
+                title: Text(
+                  "Log out",
+                  style: GoogleFonts.lato(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red,
+                  ),
                 ),
-                buildListTile(
-                  "AppSettings",
-                  "assets/Icons/setting-2.svg",
-                  SettingsTab(),
-                  context,
+                dense: true,
+                selected: true,
+                leading: SvgPicture.asset(
+                  "assets/Icons/logout.svg",
+                  color: Colors.red,
                 ),
-                buildSectionTitle(
-                  "Account",
-                ),
-                buildListTile(
-                  "Change account name",
-                  "assets/Icons/user.svg",
-                  AccountName(),
-                  context,
-                ),
-                buildListTile(
-                  "Change account password",
-                  "assets/Icons/key.svg",
-                  ChangePassword(),
-                  context,
-                ),
-                buildListTile("Change account Image", "assets/Icons/camera.svg",
-                    ChangeImage(), context),
-                buildSectionTitle(
-                  "Uptodo",
-                ),
-                buildListTile(
-                  "About US",
-                  "assets/Icons/menu.svg",
-                  AccountName(),
-                  context,
-                ),
-                buildListTile(
-                  "FAQ",
-                  "assets/Icons/info-circle.svg",
-                  ChangePassword(),
-                  context,
-                ),
-                buildListTile("Help & Feedback", "assets/Icons/flash.svg",
-                    ChangeImage(), context),
-                buildListTile("Support US",
-                    "assets/Icons/like.svg",
-                    ChangeImage(), context),
-                ListTile(
-                  minLeadingWidth: 0,
-                  autofocus: true,
-                  title: Text(
-                    "Log out",
-                    style: GoogleFonts.lato(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.red,
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ChangeImage(),
                     ),
-                  ),
-                  dense: true,
-                  selected: true,
-                  leading: SvgPicture.asset(
-                    "assets/Icons/logout.svg",
-                    color: Colors.red, // يمكنك تحديد اللون إذا كنت تريد تغييره
-
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChangeImage(),
-                      ),
-                    );
-                  },
-                )
-              ]),
+                  );
+                },
+              ),
             ]),
           )
         ],
