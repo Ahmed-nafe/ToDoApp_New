@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ShowListtodos extends StatefulWidget {
-  const ShowListtodos({super.key});
+class ShowListTodos extends StatefulWidget {
+  const ShowListTodos({super.key});
 
   @override
-  State<ShowListtodos> createState() => _ShowListtodosState();
+  State<ShowListTodos> createState() => _ShowListTodosState();
 }
 
-class _ShowListtodosState extends State<ShowListtodos> {
+class _ShowListTodosState extends State<ShowListTodos> {
   Color _todayColor = Colors.transparent;
   Color _completedColors = Colors.transparent;
   bool isselected = false;

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:todonew/Pages/CalenderPage/CalenderScreen.dart';
-import 'package:todonew/Pages/FocusePage/Focuse.dart';
+import 'package:todonew/Pages/calender_page/CalenderScreen.dart';
 import 'package:todonew/Pages/HomeScreen.dart';
-import 'package:todonew/Pages/IndexTasks/IndexScreen.dart';
-import 'package:todonew/Pages/ProfilePage/ProfileScreen.dart';
-import 'package:todonew/Pages/SplashScreen/splashScreen.dart';
+import 'package:todonew/Pages/index_tasks/IndexScreen.dart';
+import 'package:todonew/Pages/splash_screen/splashScreen.dart';
+import 'package:todonew/pages/focuse_page/Focuse.dart';
+import 'package:todonew/pages/profile_page/ProfileScreen.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

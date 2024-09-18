@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todonew/Pages/HomeScreen.dart';
-import 'package:todonew/Pages/ProfilePage/Tabs/AccountSettings/AccountName.dart';
-import 'package:todonew/Pages/ProfilePage/Tabs/AccountSettings/ChangeImage.dart';
-import 'package:todonew/Pages/ProfilePage/Tabs/AccountSettings/ChangePassword.dart';
-import 'package:todonew/Pages/ProfilePage/Tabs/Settings%20Tab.dart';
+import 'package:todonew/pages/profile_page/Tabs/AccountSettings/AccountName.dart';
+import 'package:todonew/pages/profile_page/Tabs/AccountSettings/ChangeImage.dart';
+import 'package:todonew/pages/profile_page/Tabs/AccountSettings/ChangePassword.dart';
+import 'package:todonew/pages/profile_page/Tabs/Settings%20Tab.dart';
+
 
 class ProfileTab extends StatefulWidget {
   static const String routeName = "profile";
