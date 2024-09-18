@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:todonew/Pages/HomeScreen.dart';
+import 'package:todonew/pages/home/HomeScreen.dart';
 
 
 class SplashScreen extends StatelessWidget {

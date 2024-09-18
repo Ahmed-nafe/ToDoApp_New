@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:todonew/Pages/Home.dart';
-
+import 'package:todonew/pages/home/Home.dart';
 
 void main() {
   runApp(const Home());

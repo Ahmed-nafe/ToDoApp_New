@@ -31,12 +31,12 @@ class _ShowListTodosState extends State<ShowListTodos> {
               onTap: () {
                 setState(() {
                   currentIndex = 0;
-                  if (_todayColor == Colors.transparent) {
+                  if (_todayColor == Colors.transparent&&currentIndex==0) {
                     _todayColor = Colors.blue;
                     _completedColors = Colors.transparent;
                     currentIndex = currentIndex;
                   }
-                  print(currentIndex);
+                  // print(currentIndex);
                 });
               },
               child: Container(
@@ -64,7 +64,7 @@ class _ShowListTodosState extends State<ShowListTodos> {
                     _todayColor = Colors.transparent;
                     currentIndex= currentIndex;
                   }
-               print(currentIndex);
+               // print(currentIndex);
                 });
               },
               child: Container(

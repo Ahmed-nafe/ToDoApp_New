@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:todonew/Pages/HomeScreen.dart';
 import 'package:todonew/pages/profile_page/Tabs/AccountSettings/AccountName.dart';
 import 'package:todonew/pages/profile_page/Tabs/AccountSettings/ChangeImage.dart';
 import 'package:todonew/pages/profile_page/Tabs/AccountSettings/ChangePassword.dart';

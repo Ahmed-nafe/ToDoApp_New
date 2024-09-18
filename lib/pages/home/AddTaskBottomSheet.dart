@@ -1,11 +1,13 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:todonew/Pages/calender_page/TodosModel.dart';
-
+import 'package:todonew/pages/calender_page/screens/ListTasks.dart';
+import 'package:todonew/pages/calender_page/screens/cubits/todos_cuibt_cubit.dart';
+import 'package:todonew/pages/home/Home.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
-
   final List<TodoItemModel>? todos;
 
   const AddTaskBottomSheet({super.key, this.todos});
@@ -25,111 +27,109 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).viewInsets.bottom,
-        ),
-        child: Container(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Form(
-              key: formkey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextFormField(
-                    validator: (String? value) {
-                      if (value == null || value.isEmpty) {
-                        return "You must Enter a task title";
-                      }
-                      if (value.length < 4) {
-                        return "You must Enter More than 4 Characters";
-                      }
-                      return null;
-                    },
-                    maxLength: 200,
-                    textInputAction: TextInputAction.next,
-                    controller: titlecontroller,
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.all(8),
-                      labelText: "Title",
-                    ),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                    ),
+      padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,
+      ),
+      child: Container(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: formkey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "You must Enter a task title";
+                    }
+                    if (value.length < 4) {
+                      return "You must Enter More than 4 Characters";
+                    }
+                    return null;
+                  },
+                  maxLength: 200,
+                  textInputAction: TextInputAction.next,
+                  controller: titlecontroller,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(8),
+                    labelText: "Title",
                   ),
-                  SizedBox(
-                      height:
-                      MediaQuery.of(context).size.height * 0.02),
-                  TextFormField(
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "You must Enter a task description";
-                      }
-                      if (value.length < 20) {
-                        return "You must Enter More than 20 Characters";
-                      }
-                      return null;
-                    },
-                    maxLength: 200,
-                    controller: descontroller,
-                    textInputAction: TextInputAction.done,
-                    decoration: const InputDecoration(
-                      contentPadding: EdgeInsets.all(8),
-                      labelText: "Detail",
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                TextFormField(
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return "You must Enter a task description";
+                    }
+                    if (value.length < 20) {
+                      return "You must Enter More than 20 Characters";
+                    }
+                    return null;
+                  },
+                  maxLength: 200,
+                  controller: descontroller,
+                  textInputAction: TextInputAction.done,
+                  decoration: const InputDecoration(
+                    contentPadding: EdgeInsets.all(8),
+                    labelText: "Detail",
+                  ),
+                  style: TextStyle(color: Colors.white, fontSize: 20),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        showBottomSheetDatePicker();
+                      },
+                      icon: Icon(Icons.timer_sharp),
                     ),
-                    style:
-                    TextStyle(color: Colors.white, fontSize: 20),
-                  ),
-                  SizedBox(
-                      height:
-                      MediaQuery.of(context).size.height * 0.04),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {
-                          showBottomSheetDatePicker();
-                        },
-                        icon: Icon(Icons.timer_sharp),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.local_offer_outlined),
+                    ),
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.flag_outlined),
+                    ),
+                    Spacer(),
+                    IconButton(
+                      onPressed: () {
+                        if (formkey.currentState!.validate()) {
+
+                            context.read<TodosCuibt>().addTodoItemsToList(titlecontroller.text);
+
+                            // todos.add(
+                            //   TodoItemModel(
+                            //       title: titlecontroller.text,
+                            //       description: descontroller.text),);
+                            //
+                            // titlecontroller.clear();
+                            // descontroller.clear();
+                            // Navigator.pop(context);
+
+                        }
+                      },
+                      icon: Icon(
+                        Icons.send_outlined,
+                        color: Colors.blue,
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.local_offer_outlined),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(Icons.flag_outlined),
-                      ),
-                      Spacer(),
-                      IconButton(
-                        onPressed: () {
-                          if (formkey.currentState!.validate()) {
-                            setState(() {
-                              todos.add(
-                                TodoItemModel(
-                                    title: titlecontroller.text,
-                                    description: descontroller.text),
-                              );
-                              titlecontroller.clear();
-                              descontroller.clear();
-                              Navigator.pop(context);
-                            });
-                          }
-                        },
-                        icon: Icon(
-                          Icons.send_outlined,
-                          color: Colors.blue,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
-      );
+      ),
+    );
   }
+
   void showBottomSheetDatePicker() {
     showModalBottomSheet(
         context: context,
@@ -155,8 +155,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               }
             },
           );
-        }
-    );
+        });
   }
 }
 

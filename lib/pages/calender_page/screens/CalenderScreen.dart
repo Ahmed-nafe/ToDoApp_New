@@ -1,11 +1,14 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:todonew/Pages/calender_page/CalenderTime.dart';
 import 'package:todonew/Pages/calender_page/TodosModel.dart';
 import 'package:todonew/core/themes/colors.dart';
+import 'package:todonew/pages/calender_page/screens/CalenderTime.dart';
 import 'package:todonew/pages/calender_page/screens/ShowListsTodo.dart';
+import 'package:todonew/pages/calender_page/screens/cubits/todos_cuibt_cubit.dart';
 
 class CalenderScreen extends StatefulWidget {
   static const String routeName = "calenderScreen";
@@ -23,7 +26,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
   int currentIndex = 0;
   TextEditingController titlecontroller = TextEditingController();
   TextEditingController descontroller = TextEditingController();
-
 
   bool isselected = false;
 
@@ -79,15 +81,29 @@ class _CalenderScreenState extends State<CalenderScreen> {
   // }
 
   Widget today() {
-    return Expanded(
-      child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: todos.length,
-          itemBuilder: (context, index) {
-            return listTodoItem(
-              todos[index],
-            );
-          }),
+    return BlocBuilder<TodosCuibt, TodosState>(
+      builder: (context, state) {
+        print("the Ahmed $state");
+        if (state is TodosSucceed) {
+          return Expanded(
+            child: ListView.builder(
+                shrinkWrap: true,
+                itemCount: todos.length,
+                itemBuilder: (context, index) {
+                  return listTodoItem(
+                    todos[index],
+                  );
+                }),
+          );
+        } else {
+          return Center(
+            child: Text(
+              "ToDo Items Not Found",
+              style: AppColors.primarystyle,
+            ),
+          );
+        }
+      },
     );
   }
 
@@ -199,7 +215,6 @@ class _CalenderScreenState extends State<CalenderScreen> {
                           ],
                         ),
                       ),
-
                       Container(
                         padding: EdgeInsets.all(2),
                         decoration: BoxDecoration(
