@@ -11,9 +11,6 @@ class AppColors {
   static const Color white = Colors.white;
   static const Color blue = Colors.blue;
   static const Color lightblueprimary = Color(0xff8687E7);
-  static TextStyle primarystyle = GoogleFonts.lato(
-      color: Colors.white,
-      fontWeight: FontWeight.w400
-  ,fontSize: 20);
+
 
 }

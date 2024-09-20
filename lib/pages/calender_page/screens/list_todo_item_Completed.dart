@@ -19,17 +19,30 @@ class _ListTodoItemCompletedState extends State<ListTodoItemCompleted> {
     return BlocBuilder<TodosCuibt, TodosState>(
       builder: (context, state) {
         if (state is TodosSucceed) {
-          print("Ahmed $state");
+          // print("Ahmed $state");
           final completeItems =
               state.todos.where((element) => element.isChecked).toList();
           // print("Complete Items: ${completeItems.length}");
           if (completeItems.isEmpty) {
             return Expanded(
-              child: Center(
-                child: Text(
-                  "No Items Completed  ",
-                  style: TextStyle(color: AppColors.white),
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Center(
+                    child: SvgPicture.asset(
+                      "assets/Checklist-rafiki 1.svg",
+                    ),
+                  ),
+                  Text(
+                    "Are there any complete tasks ?",
+                    style: GoogleFonts.lato(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 20,
+                      color: AppColors.white,
+                    ),
+                  ),
+
+                ],
               ),
             );
           }
