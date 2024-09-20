@@ -2,8 +2,8 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:todonew/pages/calender_page/screens/cubits/todos_cuibt_cubit.dart';
 import 'package:todonew/pages/calender_page/TodosModel.dart';
+import 'package:todonew/pages/cubits/todos_cuibt_cubit.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
   // final List<TodoItemModel>? todos;
@@ -107,9 +107,9 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                                     title: titlecontroller.text,
                                     description: descontroller.text),
                               );
-                          // titlecontroller.clear();
-                          // descontroller.clear();
-                          // Navigator.pop(context);
+                          titlecontroller.clear();
+                          descontroller.clear();
+                          Navigator.pop(context);
                         }
                       },
                       icon: Icon(
