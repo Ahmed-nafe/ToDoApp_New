@@ -41,7 +41,8 @@ class _ProfileTabState extends State<ProfileTab> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
-            child: ClipOval(
+            child:
+            ClipOval(
               child: Image.network(
                 "https://images.unsplash.com/photo-1590383153321-661b12bd4313?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MTN8fHxlbnwwfHx8fHw%3D",
                 width: MediaQuery.of(context).size.width * 0.3,
