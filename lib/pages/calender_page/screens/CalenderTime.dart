@@ -1,6 +1,7 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:todonew/core/themes/colors.dart';
 
 class CalenderTime extends StatefulWidget {
   const CalenderTime({super.key});
@@ -61,10 +62,10 @@ class _CalenderTimeState extends State<CalenderTime> {
         lastDate: DateTime.now().add(Duration(days: 5000)),
         onDateSelected: (date) {},
         leftMargin: 100,
-        monthColor: Colors.white,
-        dayColor: Colors.white,
-        activeDayColor: Colors.white,
-        activeBackgroundDayColor: Color(0xff8687E7),
+        monthColor: AppColors.white,
+        dayColor: AppColors.white,
+        activeDayColor: AppColors.white,
+        activeBackgroundDayColor:AppColors.lightblueprimary,
         dotColor: Color(0xFF333A47),
         // selectableDayPredicate: (date) => date.day != 23,
         locale: 'en_ISO',

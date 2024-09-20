@@ -2,15 +2,15 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:todonew/Pages/calender_page/TodosModel.dart';
-import 'package:todonew/pages/calender_page/screens/ListTasks.dart';
 import 'package:todonew/pages/calender_page/screens/cubits/todos_cuibt_cubit.dart';
-import 'package:todonew/pages/home/Home.dart';
+import 'package:todonew/pages/calender_page/TodosModel.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
-  final List<TodoItemModel>? todos;
+  // final List<TodoItemModel>? todos;
 
-  const AddTaskBottomSheet({super.key, this.todos});
+  const AddTaskBottomSheet({
+    super.key,
+  });
 
   @override
   State<AddTaskBottomSheet> createState() => _AddTaskBottomSheetState();
@@ -20,7 +20,8 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   TextEditingController titlecontroller = TextEditingController();
   TextEditingController descontroller = TextEditingController();
   TextEditingController _dateTimeController = TextEditingController();
-  List<TodoItemModel> todos = [];
+
+  // List<TodoItemModel> todos = [];
 
   var formkey = GlobalKey<FormState>();
 
@@ -101,18 +102,14 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                     IconButton(
                       onPressed: () {
                         if (formkey.currentState!.validate()) {
-
-                            context.read<TodosCuibt>().addTodoItemsToList(titlecontroller.text);
-
-                            // todos.add(
-                            //   TodoItemModel(
-                            //       title: titlecontroller.text,
-                            //       description: descontroller.text),);
-                            //
-                            // titlecontroller.clear();
-                            // descontroller.clear();
-                            // Navigator.pop(context);
-
+                          context.read<TodosCuibt>().addTodoItemsToList(
+                                TodoItemModel(
+                                    title: titlecontroller.text,
+                                    description: descontroller.text),
+                              );
+                          // titlecontroller.clear();
+                          // descontroller.clear();
+                          // Navigator.pop(context);
                         }
                       },
                       icon: Icon(

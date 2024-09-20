@@ -20,12 +20,6 @@
 //   TextEditingController descontroller = TextEditingController();
 //   final GlobalKey<FormState> formkey = GlobalKey<FormState>();
 //
-//   void addTask(TodoItemModel task) {
-//     setState(() {
-//       todos.add(task);
-//     });
-//   }
-//
 //   @override
 //   Widget build(BuildContext context) {
 //     return Expanded(

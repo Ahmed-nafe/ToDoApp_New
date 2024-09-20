@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:todonew/core/themes/colors.dart';
 
 class ShowListTodos extends StatefulWidget {
-  const ShowListTodos({super.key});
+  final Function(int) onTabSelected;
+   ShowListTodos({super.key ,  required this.onTabSelected});
 
   @override
   State<ShowListTodos> createState() => _ShowListTodosState();
 }
 
 class _ShowListTodosState extends State<ShowListTodos> {
-  Color _todayColor = Colors.transparent;
+  Color _todayColor = AppColors.lightblueprimary;
   Color _completedColors = Colors.transparent;
   bool isselected = false;
-  int currentIndex = 0;
+  // int currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +25,19 @@ class _ShowListTodosState extends State<ShowListTodos> {
       child: Container(
         width: MediaQuery.of(context).size.width * 0.9,
         height: MediaQuery.of(context).size.height * 0.09,
-        color: const Color(0xff4C4C4C),
+        color: AppColors.dimGray,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             InkWell(
               onTap: () {
                 setState(() {
-                  currentIndex = 0;
-                  if (_todayColor == Colors.transparent&&currentIndex==0) {
-                    _todayColor = Colors.blue;
+                  widget.onTabSelected(0);
+                  // currentIndex = 0;
+                    _todayColor = AppColors.lightblueprimary;
                     _completedColors = Colors.transparent;
-                    currentIndex = currentIndex;
-                  }
+
+
                   // print(currentIndex);
                 });
               },
@@ -57,13 +59,11 @@ class _ShowListTodosState extends State<ShowListTodos> {
             InkWell(
               onTap: () {
                 setState(() {
-                  currentIndex = 1;
-
-                  if (_completedColors == Colors.transparent && currentIndex == 1) {
-                    _completedColors = Colors.blue;
+                  widget.onTabSelected(1);
+                  // currentIndex = 1;
+                   _completedColors = AppColors.lightblueprimary;
                     _todayColor = Colors.transparent;
-                    currentIndex= currentIndex;
-                  }
+
                // print(currentIndex);
                 });
               },

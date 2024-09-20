@@ -7,7 +7,7 @@ final class TodosInitial extends TodosState {}
 
 
 final class TodosSucceed extends TodosState {
-final List<String> todos ;
+final List<TodoItemModel> todos ;
 
   TodosSucceed(this.todos);
 

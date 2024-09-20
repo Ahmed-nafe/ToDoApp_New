@@ -5,12 +5,15 @@ import 'package:todonew/pages/calender_page/TodosModel.dart';
 part 'todos_cuibt_state.dart';
 
 class TodosCuibt extends Cubit<TodosState> {
-
   TodosCuibt() : super(TodosInitial());
-  List <String> todos = [];
+  List<TodoItemModel> todos = [];
 
-  void addTodoItemsToList (String value){
+  void addTodoItemsToList(TodoItemModel value) {
     todos.add(value);
+    emit(TodosSucceed(todos));
+  }
+  void removeTodoItemsToList(int index) {
+    todos.removeAt(index);
     emit(TodosSucceed(todos));
   }
 }
