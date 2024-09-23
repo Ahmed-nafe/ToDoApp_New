@@ -46,6 +46,7 @@ dependencies:
   datetime_picker_formfield: ^2.0.0
   onboarding: ^4.0.2
   flutter_bloc: ^8.1.6
+  fluttertoast: ^8.2.8
 
 
 
@@ -76,6 +77,7 @@ flutter:
    - assets/
    - assets/Icons/
    - assets/splashScreen/
+   - assets/categoryIcons/
 #     - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

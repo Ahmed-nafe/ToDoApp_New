@@ -32,6 +32,7 @@ class _HomescreenState extends State<Homescreen> {
     double heightSize = MediaQuery.of(context).size.height;
     double widthSize = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppColors.primarygray,
           elevation: 0,

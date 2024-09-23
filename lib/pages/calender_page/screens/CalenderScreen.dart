@@ -3,8 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:todonew/core/themes/colors.dart';
 import 'package:todonew/pages/calender_page/screens/CalenderTime.dart';
 import 'package:todonew/pages/calender_page/screens/ShowListsTodo.dart';
-import 'package:todonew/pages/calender_page/screens/list_todo_item_Completed.dart';
-import 'package:todonew/pages/calender_page/screens/list_todo_item_Today.dart';
+import 'package:todonew/pages/calender_page/screens/list_todo_item.dart';
 
 class CalenderScreen extends StatefulWidget {
   static const String routeName = "calenderScreen";
@@ -18,17 +17,14 @@ class CalenderScreen extends StatefulWidget {
 }
 
 class _CalenderScreenState extends State<CalenderScreen> {
-  // List<TodoItemModel> todos = [];
   int currentIndex = 0;
-  TextEditingController titlecontroller = TextEditingController();
-  TextEditingController descontroller = TextEditingController();
 
-  List<Widget> ListTask() {
-    return [
-      ListTodoItemToday(),
-      ListTodoItemCompleted(),
-    ];
-  }
+  // List<Widget> ListTask() {
+  //   return [
+  //     ListTodoItemToday(),
+  //
+  //   ];
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -47,20 +43,12 @@ class _CalenderScreenState extends State<CalenderScreen> {
       ),
       backgroundColor: AppColors.dark,
       body: Column(
-
         children: [
           CalenderTime(),
-          ShowListTodos(
-            onTabSelected: (int index) {
-              setState(() {
-                currentIndex = index;
-              });
-            },
-          ),
-          ListTask()[currentIndex],
+          ShowListTodos(),
+          ListTodoItemToday(),
         ],
       ),
     );
   }
-
 }

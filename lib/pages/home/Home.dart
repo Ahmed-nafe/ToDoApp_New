@@ -16,6 +16,7 @@ class Home extends StatelessWidget {
     return BlocProvider(
       create: (context) => TodosCuibt(),
       child: MaterialApp(
+        title: "ToDo",
         debugShowCheckedModeBanner: false,
         initialRoute: SplashScreen.routeName,
         routes: {

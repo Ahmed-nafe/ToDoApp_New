@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todonew/core/themes/colors.dart';
-import 'package:todonew/pages/calender_page/screens/list_todo_item_Today.dart';
+import 'package:todonew/pages/calender_page/screens/list_todo_item.dart';
 import 'package:todonew/pages/cubits/todos_cuibt_cubit.dart';
 
 class IndexScreen extends StatefulWidget {
@@ -18,59 +18,61 @@ class IndexScreen extends StatefulWidget {
 class _IndexScreenState extends State<IndexScreen> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-
       backgroundColor: Colors.black,
       body: BlocBuilder<TodosCuibt, TodosState>(
         builder: (context, state) {
           if (state is TodosSucceed) {
-
-          return Column(children:[
-           appBar(),
-            ListTodoItemToday()]);
-        } else {
             return Column(
-            children: [
-              appBar(),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Center(
-                      child: SvgPicture.asset(
-                        "assets/Checklist-rafiki 1.svg",
+              children: [
+                appBar(),
+                ListTodoItemToday(),
+              ],
+            );
+          } else {
+            return Column(
+              children: [
+                appBar(),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: SvgPicture.asset(
+                          "assets/Checklist-rafiki 1.svg",
+                        ),
                       ),
-                    ),
-                    Text(
-                      "What do you want to do today?",
-                      style: GoogleFonts.lato(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
-                        color: AppColors.white,
-                      ),
-                    ),
-                    Text(
-                      "Tap + to add your tasks",
-                      style: GoogleFonts.lato(
+                      Text(
+                        "What do you want to do today?",
+                        style: GoogleFonts.lato(
                           fontWeight: FontWeight.w400,
-                          fontSize: 16,
+                          fontSize: 20,
                           color: AppColors.white,
-                          height: 3),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          );}
+                        ),
+                      ),
+                      Text(
+                        "Tap + to add your tasks",
+                        style: GoogleFonts.lato(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            color: AppColors.white,
+                            height: 3),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            );
+          }
         },
       ),
     );
   }
-  Widget appBar (){
+
+  Widget appBar() {
     double heightSize = MediaQuery.of(context).size.height;
     double widthSize = MediaQuery.of(context).size.width;
-    return  Padding(
+    return Padding(
       padding: EdgeInsets.only(
           top: heightSize * 0.05,
           left: heightSize * 0.017,
