@@ -14,7 +14,6 @@ class ShowListTodos extends StatefulWidget {
 }
 
 class _ShowListTodosState extends State<ShowListTodos> {
-
   // int currentIndex = 0;
 
   @override
@@ -43,14 +42,9 @@ class _ShowListTodosState extends State<ShowListTodos> {
                           context.read<TodosCuibt>().isCompletedFilter
                               ? Colors.transparent
                               : AppColors.lightblueprimary,
-                      shape: context.read<TodosCuibt>().isCompletedFilter
-                          ? RoundedRectangleBorder(
-                              side: BorderSide(color: AppColors.white),
-                              borderRadius: BorderRadius.circular(4),
-                            )
-                          : RoundedRectangleBorder(
-                              side: BorderSide(color: AppColors.white),
-                              borderRadius: BorderRadius.circular(4)),
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: AppColors.white),
+                          borderRadius: BorderRadius.circular(4)),
                     ),
                     child: Text(
                       "Today",
@@ -63,12 +57,11 @@ class _ShowListTodosState extends State<ShowListTodos> {
                   ),
                 ),
                 SizedBox(
-                  width: MediaQuery.sizeOf(context).width*0.05,
+                  width: MediaQuery.sizeOf(context).width * 0.05,
                 ),
                 Expanded(
                   child: TextButton(
                     onPressed: () {
-
                       context.read<TodosCuibt>().filterTodosCompleted();
                     },
                     style: TextButton.styleFrom(
@@ -76,14 +69,9 @@ class _ShowListTodosState extends State<ShowListTodos> {
                           context.read<TodosCuibt>().isCompletedFilter
                               ? AppColors.lightblueprimary
                               : Colors.transparent,
-                      shape: context.read<TodosCuibt>().isCompletedFilter
-                          ? RoundedRectangleBorder(
-                              side: BorderSide(color: AppColors.white),
-                              borderRadius: BorderRadius.circular(4),
-                            )
-                          : RoundedRectangleBorder(
-                              side: BorderSide(color: AppColors.white),
-                              borderRadius: BorderRadius.circular(4)),
+                      shape: RoundedRectangleBorder(
+                          side: BorderSide(color: AppColors.white),
+                          borderRadius: BorderRadius.circular(4)),
                     ),
                     child: Text(
                       "Completed",

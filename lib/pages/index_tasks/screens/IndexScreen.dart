@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:todonew/core/themes/colors.dart';
+import 'package:todonew/pages/calender_page/model/TodosModel.dart';
 import 'package:todonew/pages/calender_page/screens/list_todo_item.dart';
 import 'package:todonew/pages/cubits/todos_cuibt_cubit.dart';
 
@@ -23,9 +24,56 @@ class _IndexScreenState extends State<IndexScreen> {
       body: BlocBuilder<TodosCuibt, TodosState>(
         builder: (context, state) {
           if (state is TodosSucceed) {
+            if (state.todos.isEmpty) {
+              return Column(
+                children: [
+                  appBar(),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Center(
+                          child: SvgPicture.asset(
+                            "assets/Checklist-rafiki 1.svg",
+                          ),
+                        ),
+                        Text(
+                          "What do you want to do today?",
+                          style: GoogleFonts.lato(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 20,
+                            color: AppColors.white,
+                          ),
+                        ),
+                        Text(
+                          "Tap + to add your tasks",
+                          style: GoogleFonts.lato(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: AppColors.white,
+                              height: 3),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              );
+            }
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 appBar(),
+                Container(
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(left: 15, top: 15),
+                  decoration: BoxDecoration(
+                      color: AppColors.primarygray.withOpacity(0.5),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Text(
+                    "Today",
+                    style: GoogleFonts.lato(color: Colors.white),
+                  ),
+                ),
                 ListTodoItemToday(),
               ],
             );

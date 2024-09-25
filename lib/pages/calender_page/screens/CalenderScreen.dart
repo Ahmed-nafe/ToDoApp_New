@@ -19,16 +19,10 @@ class CalenderScreen extends StatefulWidget {
 class _CalenderScreenState extends State<CalenderScreen> {
   int currentIndex = 0;
 
-  // List<Widget> ListTask() {
-  //   return [
-  //     ListTodoItemToday(),
-  //
-  //   ];
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(
           "Calendar",

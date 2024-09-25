@@ -23,14 +23,12 @@ class _ListTodoItemTodayState extends State<ListTodoItemToday> {
       builder: (context, state) {
         if (state is TodosSucceed) {
           if (state.todos.isEmpty) {
-            return SingleChildScrollView(
+            return Center(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
-                  Center(
-                    child: SvgPicture.asset(
-                      "assets/Checklist-rafiki 1.svg",
-                    ),
+                  SvgPicture.asset(
+                    "assets/Checklist-rafiki 1.svg",
                   ),
                   Text(
                     "What do you want to do today?",
@@ -130,7 +128,7 @@ class _ListTodoItemTodayState extends State<ListTodoItemToday> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                        "Today ${DateFormat("MEd").format(todosItem.date)}",
+                                        "Today ${DateFormat("MMMd").format(todosItem.date)} at ${todosItem.time!.format(context)}",
                                         style: GoogleFonts.lato(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
@@ -217,15 +215,13 @@ class _ListTodoItemTodayState extends State<ListTodoItemToday> {
                   );
                 }),
           );
-        } else {
-          return SingleChildScrollView(
+        }
+        else {
+          return Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(
-                  child: SvgPicture.asset(
-                    "assets/Checklist-rafiki 1.svg",
-                  ),
+                SvgPicture.asset(
+                  "assets/Checklist-rafiki 1.svg",
                 ),
                 Text(
                   "What do you want to do today?",

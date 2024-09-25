@@ -8,6 +8,11 @@ class TodosCuibt extends Cubit<TodosState> {
   TodosCuibt() : super(TodosInitial());
   List<TodoItemModel> todos = [];
   bool isCompletedFilter = false;
+  bool isSameDay(DateTime date1, DateTime date2) {
+    return date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day;
+  }
 
   void addTodoItemsToList(TodoItemModel value) {
     todos.add(value);
@@ -37,6 +42,13 @@ class TodosCuibt extends Cubit<TodosState> {
     isCompletedFilter = false;
     emit(
       TodosSucceed(todos),
+    );
+  }
+  void filterByDate(DateTime date) {
+    final newList = todos.where((elment) => isSameDay(elment.date, date)).toList();
+
+    emit(
+      TodosSucceed(newList),
     );
   }
 }
