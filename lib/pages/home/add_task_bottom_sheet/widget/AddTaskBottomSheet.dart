@@ -5,8 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:todonew/core/themes/colors.dart';
 import 'package:todonew/pages/calender_page/model/TodosModel.dart';
 import 'package:todonew/pages/calender_page/model/category_model.dart';
+import 'package:todonew/pages/calender_page/model/priority_model.dart';
 import 'package:todonew/pages/cubits/todos_cuibt_cubit.dart';
-import 'package:todonew/pages/home/add_task_bottom_sheet/widget/category_dialog.dart';
 import 'package:todonew/pages/home/add_task_bottom_sheet/widget/custom_text_form_field.dart';
 
 class AddTaskBottomSheet extends StatefulWidget {
@@ -23,6 +23,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   TextEditingController desController = TextEditingController();
   DateTime? selectedDate;
   CategoryModel? selectedCategory;
+  PriorityModel? selectedPriority;
   DateTime? selectedDateTime;
   var formkey = GlobalKey<FormState>();
   final FocusNode _focusNode = FocusNode();
@@ -90,13 +91,19 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                       showDialog(
                           context: context,
                           builder: (context) {
-                            return CategoryDialog();
+                            return categoryDialog();
                           });
                     },
                     icon: Icon(Icons.local_offer_outlined),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return PriorityDialog();
+                          });
+                    },
                     icon: Icon(Icons.flag_outlined),
                   ),
                   Spacer(),
@@ -125,10 +132,33 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                               fontSize: 16.0);
                           return;
                         }
+                        if (selectedPriority == null) {
+                          Fluttertoast.showToast(
+                              msg: "Please selected Priority!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          return;
+                        }
+                        if (selectedDateTime == null) {
+                          Fluttertoast.showToast(
+                              msg: "Please selected Time!",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          return;
+                        }
                         TimeOfDay selectedTime =
                             TimeOfDay.fromDateTime(selectedDateTime!);
                         context.read<TodosCuibt>().addTodoItemsToList(
                               TodoItemModel(
+                                priorityModel: selectedPriority!,
                                 time: selectedTime,
                                 date: selectedDate!,
                                 title: titleController.text,
@@ -228,6 +258,143 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
           });
         }
       },
+    );
+  }
+
+  categoryDialog() {
+    return Dialog(
+      backgroundColor: AppColors.primarygray,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height * 0.015,
+          ),
+          Text(
+            "Choose Category",
+            style: GoogleFonts.lato(
+                color: AppColors.white,
+                fontSize: 20,
+                fontWeight: FontWeight.w700),
+          ),
+          Divider(
+            color: Color(0xff979797),
+          ),
+          Container(
+            width: MediaQuery.sizeOf(context).width * 0.85,
+            height: MediaQuery.sizeOf(context).height * 0.6,
+            decoration: BoxDecoration(
+              color: AppColors.primarygray,
+              borderRadius: BorderRadius.circular(2),
+            ),
+            child: GridView.builder(
+              itemCount: CategoryModel.categoryList.length,
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      selectedCategory = CategoryModel.categoryList[index];
+                    });
+
+                    Navigator.of(context).pop();
+                  },
+                  child: GridTile(
+                    footer: Center(
+                      child: Text(
+                        CategoryModel.categoryList[index].name,
+                        style: GoogleFonts.lato(
+                            color: AppColors.white.withOpacity(0.8),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                    child: Container(
+                      margin: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(15),
+                      color: CategoryModel.categoryList[index].color,
+                      child: CategoryModel.categoryList[index].icon,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  PriorityDialog() {
+    return Dialog(
+      backgroundColor: AppColors.primarygray,
+      child: Wrap(
+        // mainAxisSize: MainAxisSize.min,
+        children: [
+          Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.015,
+            ),
+            Text(
+              "Edit Task Priority",
+              style: GoogleFonts.lato(
+                  color: AppColors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700),
+            ),
+            Divider(
+              color: Color(0xff979797),
+            ),
+            Container(
+              width: MediaQuery.sizeOf(context).width * 0.9,
+              height: MediaQuery.sizeOf(context).height * 0.56,
+              decoration: BoxDecoration(
+                color: AppColors.primarygray,
+                borderRadius: BorderRadius.circular(2),
+              ),
+              child: GridView.builder(
+                itemCount: PriorityModel.priorities.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3),
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedPriority = PriorityModel.priorities[index];
+                      });
+
+                      Navigator.of(context).pop();
+                    },
+                    child: GridTile(
+                      footer: Center(
+                        child: Text(
+                          PriorityModel.priorities[index].name,
+                          style: GoogleFonts.lato(
+                              color: AppColors.white.withOpacity(0.8),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
+                      child: Container(
+                        margin: EdgeInsets.all(20),
+                        padding: EdgeInsets.all(15),
+                        color: AppColors.darkCharcoal,
+                        child: Icon(
+                          PriorityModel.priorities[index].icon,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ])
+        ],
+      ),
     );
   }
 }

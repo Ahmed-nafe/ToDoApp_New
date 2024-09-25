@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:todonew/core/themes/colors.dart';
 
 class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField({
-    super.key,
-    required this.controller,
-    this.hintText,
-    this.autofocus = false,
-    this.maxLines = 2,
-    this.maxLength = 100,
-  });
+  const CustomTextFormField(
+      {super.key,
+      required this.controller,
+      this.hintText,
+      this.autofocus = false,
+      this.maxLines = 2,
+      this.maxLength = 100,
+      this.inputType = TextInputType.text});
 
   final TextEditingController controller;
   final String? hintText;
@@ -17,6 +17,8 @@ class CustomTextFormField extends StatefulWidget {
   final int maxLines;
 
   final int maxLength;
+
+  final TextInputType inputType;
 
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
@@ -48,6 +50,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return Padding(
       padding: EdgeInsets.all(15),
       child: TextFormField(
+        keyboardType: widget.inputType,
         validator: (String? value) {
           if (value == null || value.isEmpty) {
             return "You must Enter a task title";

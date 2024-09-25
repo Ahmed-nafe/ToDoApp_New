@@ -186,7 +186,7 @@ class _ListTodoItemTodayState extends State<ListTodoItemToday> {
                                             width: 3,
                                           ),
                                           Text(
-                                            "1",
+                                            todosItem.priorityModel.name,
                                             style: GoogleFonts.lato(
                                                 fontWeight: FontWeight.w400,
                                                 fontSize: 12,
@@ -215,8 +215,7 @@ class _ListTodoItemTodayState extends State<ListTodoItemToday> {
                   );
                 }),
           );
-        }
-        else {
+        } else {
           return Center(
             child: Column(
               children: [
